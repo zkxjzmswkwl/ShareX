@@ -1,4 +1,4 @@
-﻿#region License Information (GPL v3)
+#region License Information (GPL v3)
 
 /*
     ShareX - A program that allows you to take screenshots and share any file type
@@ -463,7 +463,6 @@ namespace ShareX
         public VideoConverterOptions VideoConverterOptions = new VideoConverterOptions();
         public VideoThumbnailOptions VideoThumbnailOptions = new VideoThumbnailOptions();
         public BorderlessWindowSettings BorderlessWindowSettings = new BorderlessWindowSettings();
-        public AIOptions AIOptions = new AIOptions();
     }
 
     public class TaskSettingsAdvanced

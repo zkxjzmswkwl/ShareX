@@ -1,4 +1,4 @@
-﻿#region License Information (GPL v3)
+#region License Information (GPL v3)
 
 /*
     ShareX - A program that allows you to take screenshots and share any file type
@@ -82,7 +82,6 @@ namespace ShareX.HistoryLib
         private ToolStripMenuItem tsmiUploadFile;
         private ToolStripMenuItem tsmiEditImage;
         private ToolStripMenuItem tsmiPinToScreen;
-        private ToolStripMenuItem tsmiAnalyzeImage;
 
         private void InitializeComponent()
         {
@@ -136,7 +135,6 @@ namespace ShareX.HistoryLib
             tsmiUploadFile = new ToolStripMenuItem();
             tsmiEditImage = new ToolStripMenuItem();
             tsmiPinToScreen = new ToolStripMenuItem();
-            tsmiAnalyzeImage = new ToolStripMenuItem();
 
             cmsHistory.SuspendLayout();
 
@@ -158,8 +156,7 @@ namespace ShareX.HistoryLib
                 tsmiShowImagePreview,
                 tsmiUploadFile,
                 tsmiEditImage,
-                tsmiPinToScreen,
-                tsmiAnalyzeImage
+                tsmiPinToScreen
             });
             cmsHistory.Name = "cmsHistory";
             cmsHistory.Size = new Size(128, 92);
@@ -520,15 +517,6 @@ namespace ShareX.HistoryLib
             tsmiPinToScreen.Text = Resources.PinToScreen;
             tsmiPinToScreen.Click += tsmiPinToScreen_Click;
             tsmiPinToScreen.Image = Resources.pin;
-            //
-            // tsmiAnalyzeImage
-            //
-            tsmiAnalyzeImage.Name = "tsmiAnalyzeImage";
-            tsmiAnalyzeImage.Size = new Size(127, 22);
-            tsmiAnalyzeImage.Text = "Analyze image..."; // TODO: Translate
-            tsmiAnalyzeImage.Click += tsmiAnalyzeImage_Click;
-            tsmiAnalyzeImage.Image = Resources.robot;
-
             cmsHistory.ResumeLayout(false);
         }
 
@@ -601,7 +589,6 @@ namespace ShareX.HistoryLib
                 tsmiUploadFile.Enabled = false;
                 tsmiEditImage.Enabled = false;
                 tsmiPinToScreen.Enabled = false;
-                tsmiAnalyzeImage.Enabled = false;
             }
             else
             {
@@ -667,7 +654,6 @@ namespace ShareX.HistoryLib
                 tsmiUploadFile.Enabled = uploadFile != null && IsFileExist;
                 tsmiEditImage.Enabled = editImage != null && IsImageFile;
                 tsmiPinToScreen.Enabled = pinToScreen != null && IsImageFile;
-                tsmiAnalyzeImage.Enabled = analyzeImage != null && IsImageFile;
             }
 
             cmsHistory.ResumeLayout();
@@ -853,9 +839,5 @@ namespace ShareX.HistoryLib
             PinToScreen();
         }
 
-        private void tsmiAnalyzeImage_Click(object sender, EventArgs e)
-        {
-            AnalyzeImage();
-        }
     }
 }

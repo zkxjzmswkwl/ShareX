@@ -1,4 +1,4 @@
-﻿#region License Information (GPL v3)
+#region License Information (GPL v3)
 
 /*
     ShareX - A program that allows you to take screenshots and share any file type
@@ -281,9 +281,6 @@ namespace ShareX
                     break;
                 case HotkeyType.VideoThumbnailer:
                     OpenVideoThumbnailer(safeTaskSettings);
-                    break;
-                case HotkeyType.AnalyzeImage:
-                    AnalyzeImage(safeTaskSettings);
                     break;
                 case HotkeyType.OCR:
                     if (!string.IsNullOrEmpty(filePath))
@@ -839,8 +836,7 @@ namespace ShareX
             HistoryForm historyForm = new HistoryForm(Program.HistoryManager, Program.Settings.HistorySettings,
                 filePath => UploadManager.UploadFile(filePath),
                 filePath => AnnotateImageFromFile(filePath),
-                filePath => PinToScreen(filePath),
-                filePath => AnalyzeImage(filePath));
+                filePath => PinToScreen(filePath));
 
             historyForm.Show();
         }
@@ -850,8 +846,7 @@ namespace ShareX
             ImageHistoryForm imageHistoryForm = new ImageHistoryForm(Program.HistoryManager, Program.Settings.ImageHistorySettings,
                 filePath => UploadManager.UploadFile(filePath),
                 filePath => AnnotateImageFromFile(filePath),
-                filePath => PinToScreen(filePath),
-                filePath => AnalyzeImage(filePath));
+                filePath => PinToScreen(filePath));
 
             imageHistoryForm.Show();
         }
@@ -1482,22 +1477,6 @@ namespace ShareX
             new BingVisualSearchSharingService().CreateSharer(null, null).ShareURL(url);
         }
 
-        public static void AnalyzeImage(TaskSettings taskSettings = null)
-        {
-            if (taskSettings == null) taskSettings = TaskSettings.GetDefaultTaskSettings();
-
-            AIForm aiForm = new AIForm(taskSettings.ToolsSettingsReference.AIOptions);
-            aiForm.Show();
-        }
-
-        public static void AnalyzeImage(string filePath, TaskSettings taskSettings = null)
-        {
-            if (taskSettings == null) taskSettings = TaskSettings.GetDefaultTaskSettings();
-
-            AIForm aiForm = new AIForm(filePath, taskSettings.ToolsSettingsReference.AIOptions);
-            aiForm.Show();
-        }
-
         public static async Task OCRImage(TaskSettings taskSettings = null)
         {
             if (taskSettings == null) taskSettings = TaskSettings.GetDefaultTaskSettings();
@@ -1883,7 +1862,6 @@ namespace ShareX
                     case AfterCaptureTasks.CopyFileToClipboard: return Resources.clipboard_block;
                     case AfterCaptureTasks.CopyFilePathToClipboard: return Resources.clipboard_list;
                     case AfterCaptureTasks.ShowInExplorer: return Resources.folder_stand;
-                    case AfterCaptureTasks.AnalyzeImage: return Resources.robot;
                     case AfterCaptureTasks.ScanQRCode: return ShareXResources.IsDarkTheme ? Resources.barcode_2d_white : Resources.barcode_2d;
                     case AfterCaptureTasks.DoOCR: return ShareXResources.IsDarkTheme ? Resources.edit_drop_cap_white : Resources.edit_drop_cap;
                     case AfterCaptureTasks.ShowBeforeUploadWindow: return Resources.application__arrow;
@@ -1964,7 +1942,6 @@ namespace ShareX
                     case HotkeyType.ImageThumbnailer: return Resources.image_resize_actual;
                     case HotkeyType.VideoConverter: return Resources.camcorder_pencil;
                     case HotkeyType.VideoThumbnailer: return Resources.images_stack;
-                    case HotkeyType.AnalyzeImage: return Resources.robot;
                     case HotkeyType.OCR: return ShareXResources.IsDarkTheme ? Resources.edit_drop_cap_white : Resources.edit_drop_cap;
                     case HotkeyType.QRCode: return ShareXResources.IsDarkTheme ? Resources.barcode_2d_white : Resources.barcode_2d;
                     case HotkeyType.QRCodeDecodeFromScreen: return ShareXResources.IsDarkTheme ? Resources.barcode_2d_white : Resources.barcode_2d;

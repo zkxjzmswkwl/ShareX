@@ -1,4 +1,4 @@
-﻿#region License Information (GPL v3)
+#region License Information (GPL v3)
 
 /*
     ShareX - A program that allows you to take screenshots and share any file type
@@ -52,7 +52,7 @@ namespace ShareX.HistoryLib
         private bool busy;
 
         public HistoryForm(HistoryManagerSQLite historyManager, HistorySettings settings, Action<string> uploadFile = null,
-            Action<string> editImage = null, Action<string> pinToScreen = null, Action<string> analyzeImage = null)
+            Action<string> editImage = null, Action<string> pinToScreen = null)
         {
             HistoryManager = historyManager;
             Settings = settings;
@@ -77,7 +77,7 @@ namespace ShareX.HistoryLib
             il.Images.Add(Resources.star);
             lvHistory.SmallImageList = il;
 
-            him = new HistoryItemManager(uploadFile, editImage, pinToScreen, analyzeImage);
+            him = new HistoryItemManager(uploadFile, editImage, pinToScreen);
             him.GetHistoryItems += him_GetHistoryItems;
             him.FavoriteRequested += him_FavoriteRequested;
             him.EditRequested += him_EditRequested;

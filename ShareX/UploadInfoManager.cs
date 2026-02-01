@@ -1,4 +1,4 @@
-﻿#region License Information (GPL v3)
+#region License Information (GPL v3)
 
 /*
     ShareX - A program that allows you to take screenshots and share any file type
@@ -428,11 +428,6 @@ namespace ShareX
         public void ShowQRCode()
         {
             if (IsItemSelected && SelectedItem.IsURLExist) new QRCodeForm(SelectedItem.Info.Result.URL).Show();
-        }
-
-        public void AnalyzeImage()
-        {
-            if (IsItemSelected && SelectedItem.IsImageFile) TaskHelpers.AnalyzeImage(SelectedItem.Info.FilePath);
         }
 
         public async Task OCRImage()

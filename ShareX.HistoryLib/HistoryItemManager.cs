@@ -1,4 +1,4 @@
-﻿#region License Information (GPL v3)
+#region License Information (GPL v3)
 
 /*
     ShareX - A program that allows you to take screenshots and share any file type
@@ -54,14 +54,13 @@ namespace ShareX.HistoryLib
         public bool IsTextFile { get; private set; }
         public int SelectedItemCount { get; private set; }
 
-        private Action<string> uploadFile, editImage, pinToScreen, analyzeImage;
+        private Action<string> uploadFile, editImage, pinToScreen;
 
-        public HistoryItemManager(Action<string> uploadFile, Action<string> editImage, Action<string> pinToScreen, Action<string> analyzeImage)
+        public HistoryItemManager(Action<string> uploadFile, Action<string> editImage, Action<string> pinToScreen)
         {
             this.uploadFile = uploadFile;
             this.editImage = editImage;
             this.pinToScreen = pinToScreen;
-            this.analyzeImage = analyzeImage;
 
             InitializeComponent();
             cmsHistory.Opening += cmsHistory_Opening;
@@ -71,7 +70,6 @@ namespace ShareX.HistoryLib
             tsmiUploadFile.Visible = uploadFile != null;
             tsmiEditImage.Visible = editImage != null;
             tsmiPinToScreen.Visible = pinToScreen != null;
-            tsmiAnalyzeImage.Visible = analyzeImage != null;
         }
 
         private void cmsHistory_Opening(object sender, System.ComponentModel.CancelEventArgs e)
@@ -725,9 +723,5 @@ namespace ShareX.HistoryLib
             if (pinToScreen != null && HistoryItem != null && IsImageFile) pinToScreen(HistoryItem.FilePath);
         }
 
-        public void AnalyzeImage()
-        {
-            if (analyzeImage != null && HistoryItem != null && IsImageFile) analyzeImage(HistoryItem.FilePath);
-        }
     }
 }
